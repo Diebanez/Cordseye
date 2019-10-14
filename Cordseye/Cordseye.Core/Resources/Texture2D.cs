@@ -53,9 +53,8 @@ namespace Cordseye.Core.Resources
             return m_TexturePath;
         }
 
-        public void Bind(TextureUnit texUnit = TextureUnit.Texture0)
-        {
-            GL.ActiveTexture(texUnit);
+        public void Bind(int texUnit = 0)
+        { 
             GL.BindTexture(TextureTarget.Texture2D, m_Handle);
         }
 

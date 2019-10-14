@@ -72,6 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\CordseyeBehaviour.cs" />
+    <Compile Include="Behaviours\RendererBehavior.cs" />
     <Compile Include="Events\EventsManager.cs" />
     <Compile Include="Globals\Globals.cs" />
     <Compile Include="Math\MeshVertex.cs" />
