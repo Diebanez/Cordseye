@@ -72,7 +72,11 @@
       <Name>Cordseye.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Textures\testTexture2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Textures\testTexture.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Cordseye.Core.Behaviours;
 using Cordseye.Core.Events;
 using Cordseye.Core.Globals;
 using Cordseye.Core.Math;
@@ -41,10 +43,12 @@ namespace Cordseye.Runtime
                 1, 2, 3    
             };
 
-            Mesh ms = new Mesh("Test", 0, vertices, indices);
-            Shader sh = new Shader(@"./Resources/Shaders/unlit.vert", @"./Resources/Shaders/unlit.frag");
-            Texture2D tx = new Texture2D(@"./Resources/Textures/testTexture.jpg");
+            Transform obj = new Transform();
 
+            RendererBehavior renderer = new RendererBehavior(ref obj,
+                new List<string>() {new Mesh("Test", 0, vertices, indices).GetKey()},
+                new Shader(@"./Resources/Shaders/unlit.vert", @"./Resources/Shaders/unlit.frag").GetKey(),
+                new List<string>(){new Texture2D(@"./Resources/Textures/testTexture.jpg").GetKey(), new Texture2D(@"./Resources/Textures/testTexture2.jpg").GetKey()});
         }
 
         protected override void OnRenderFrame(FrameEventArgs e)
@@ -52,9 +56,6 @@ namespace Cordseye.Runtime
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             
             EventsManager.CallRender();
-            Resource.GetResource<Texture2D>(@"./Resources/Textures/testTexture.jpg").Bind();
-            Resource.GetResource<Shader>(@"./Resources/Shaders/unlit.vert@./Resources/Shaders/unlit.frag").Use();
-            Resource.GetResource<Mesh>("Test0").Draw();
 
             Context.SwapBuffers();
             base.OnRenderFrame(e);

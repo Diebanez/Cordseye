@@ -80,5 +80,11 @@ namespace Cordseye.Core.Resources
             GL.DeleteProgram(m_Handle);
             base.OnDispose();
         }
+
+        public void SetInt(string name, int value)
+        {
+            int location = GL.GetUniformLocation(m_Handle, name);
+            GL.Uniform1(location, value);
+        }
     }
 }

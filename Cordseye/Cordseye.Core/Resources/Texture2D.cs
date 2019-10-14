@@ -18,7 +18,7 @@ namespace Cordseye.Core.Resources
 
             m_Handle = GL.GenTexture();
 
-            Bind();
+            Bind(0);
             var image = Image.Load<Rgba32>(m_TexturePath);
             image.Mutate(x => x.Flip(FlipMode.Vertical));
 
@@ -53,9 +53,10 @@ namespace Cordseye.Core.Resources
             return m_TexturePath;
         }
 
-        public void Bind(int texUnit = 0)
-        { 
-            GL.BindTexture(TextureTarget.Texture2D, m_Handle);
+        public void Bind(int texUnit)
+        {
+                GL.ActiveTexture(TextureUnit.Texture0 + texUnit);
+                GL.BindTexture(TextureTarget.Texture2D, m_Handle);
         }
 
         protected override void OnDispose()

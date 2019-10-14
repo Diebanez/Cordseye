@@ -21,6 +21,9 @@ namespace Cordseye.Core.Behaviours
             m_Shader = shader;
             m_Textures = textures;
 
+            var sh = Resource.GetResource<Shader>(m_Shader);
+            
+
             EventsManager.Render += OnRender;
         }
 
@@ -31,12 +34,20 @@ namespace Cordseye.Core.Behaviours
 
         private void OnRender()
         {
-            Resource.GetResource<Shader>(m_Shader).Use();
             for (int i = 0; i < m_Textures.Count; i++)
             {
                 Resource.GetResource<Texture2D>(m_Textures[i]).Bind(i);
             }
 
+            var sh = Resource.GetResource<Shader>(m_Shader);
+
+            sh.Use();
+
+            for (var i = 0; i < m_Textures.Count; i++)
+            {
+                sh.SetInt("Texture" + i.ToString(), i);
+            }
+            
             for (int i = 0; i < m_Meshes.Count; i++)
             {
                 Resource.GetResource<Mesh>(m_Meshes[i]).Draw();
