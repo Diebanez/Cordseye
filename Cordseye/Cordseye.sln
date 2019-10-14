@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cordseye.Core", "Cordseye.Core\Cordseye.Core.csproj", "{58FC6F0C-726D-43F6-B434-A77ABCAD2D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cordseye.Runtime", "Cordseye.Runtime\Cordseye.Runtime.csproj", "{56C963E1-EA31-4EE9-B128-E6A93B20B0EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58FC6F0C-726D-43F6-B434-A77ABCAD2D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58FC6F0C-726D-43F6-B434-A77ABCAD2D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58FC6F0C-726D-43F6-B434-A77ABCAD2D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58FC6F0C-726D-43F6-B434-A77ABCAD2D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C963E1-EA31-4EE9-B128-E6A93B20B0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C963E1-EA31-4EE9-B128-E6A93B20B0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C963E1-EA31-4EE9-B128-E6A93B20B0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C963E1-EA31-4EE9-B128-E6A93B20B0EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D7679B3-AB98-4E8D-8BD2-71D1AE11B204}
+	EndGlobalSection
+EndGlobal
