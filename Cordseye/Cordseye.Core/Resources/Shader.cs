@@ -86,5 +86,11 @@ namespace Cordseye.Core.Resources
             int location = GL.GetUniformLocation(m_Handle, name);
             GL.Uniform1(location, value);
         }
+
+        public void SetMatrix4(string name, Matrix4 value)
+        {
+            int location = GL.GetUniformLocation(m_Handle, name);
+            GL.UniformMatrix4(location, false, ref value);
+        }
     }
 }

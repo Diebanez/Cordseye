@@ -2,6 +2,7 @@
 using Cordseye.Core.Events;
 using Cordseye.Core.Math;
 using Cordseye.Core.Resources;
+using OpenTK;
 
 namespace Cordseye.Core.Behaviours
 {
@@ -22,17 +23,9 @@ namespace Cordseye.Core.Behaviours
             m_Textures = textures;
 
             var sh = Resource.GetResource<Shader>(m_Shader);
-            
-
-            EventsManager.Render += OnRender;
         }
 
-        ~RendererBehavior()
-        {
-            EventsManager.Render -= OnRender;
-        }
-
-        private void OnRender()
+        protected override void OnRender(Matrix4 projectionMatrix, Matrix4 viewMatrix)
         {
             for (int i = 0; i < m_Textures.Count; i++)
             {
@@ -42,6 +35,10 @@ namespace Cordseye.Core.Behaviours
             var sh = Resource.GetResource<Shader>(m_Shader);
 
             sh.Use();
+
+            sh.SetMatrix4("ProjectionMatrix", projectionMatrix);
+            sh.SetMatrix4("ViewMatrix", viewMatrix);
+            sh.SetMatrix4("ModelMatrix", AttachedTransform.TransformationMatrix);
 
             for (var i = 0; i < m_Textures.Count; i++)
             {

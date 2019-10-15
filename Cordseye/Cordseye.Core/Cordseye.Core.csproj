@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviours\CameraBehaviour.cs" />
     <Compile Include="Behaviours\CordseyeBehaviour.cs" />
     <Compile Include="Behaviours\RendererBehavior.cs" />
     <Compile Include="Events\EventsManager.cs" />

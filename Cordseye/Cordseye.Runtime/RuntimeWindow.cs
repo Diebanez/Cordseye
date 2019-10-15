@@ -31,6 +31,9 @@ namespace Cordseye.Runtime
             GL.ClearColor(Globals.ClearColor.R, Globals.ClearColor.G, Globals.ClearColor.B, Globals.ClearColor.A);
             EventsManager.CallLoad();
 
+            var cameraTransform = new Transform(Vector3.UnitZ * -10f, Quaternion.Identity, Vector3.One);
+            CameraBehaviour camera = new CameraBehaviour(ref cameraTransform, 60f, 16f/9f, .01f, 200f);
+
             MeshVertex[] vertices = {
                 new MeshVertex(new Vector3(0.5f, 0.5f, 0.0f), new Vector3(0.0f, 0.0f, -1.0f), new Vector2(1.0f, 1.0f)),
                 new MeshVertex(new Vector3(0.5f, -0.5f, 0.0f), new Vector3(0.0f, 0.0f, -1.0f), new Vector2(1.0f, 0.0f)),
@@ -43,9 +46,9 @@ namespace Cordseye.Runtime
                 1, 2, 3    
             };
 
-            Transform obj = new Transform();
+            var objectTransform = new Transform();
 
-            RendererBehavior renderer = new RendererBehavior(ref obj,
+            RendererBehavior renderer = new RendererBehavior(ref objectTransform,
                 new List<string>() {new Mesh("Test", 0, vertices, indices).GetKey()},
                 new Shader(@"./Resources/Shaders/unlit.vert", @"./Resources/Shaders/unlit.frag").GetKey(),
                 new List<string>(){new Texture2D(@"./Resources/Textures/testTexture.jpg").GetKey(), new Texture2D(@"./Resources/Textures/testTexture2.jpg").GetKey()});
@@ -54,8 +57,11 @@ namespace Cordseye.Runtime
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            
-            EventsManager.CallRender();
+
+            if (CameraBehaviour.MainCamera != null)
+            {
+                EventsManager.CallRender(CameraBehaviour.MainCamera.GetProjectionMatrix(), CameraBehaviour.MainCamera.GetViewMatrix());
+            }
 
             Context.SwapBuffers();
             base.OnRenderFrame(e);

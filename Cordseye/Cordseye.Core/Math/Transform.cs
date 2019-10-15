@@ -1,4 +1,5 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using OpenTK;
 
 namespace Cordseye.Core.Math
@@ -10,13 +11,16 @@ namespace Cordseye.Core.Math
         public Vector3 Scale { get; private set; }
         public Transform Parent { get; set; }
 
-        public Matrix4 LocalTransformationMatrix => Matrix4.CreateScale(Scale) * Matrix4.CreateFromQuaternion(Rotation) * Matrix4.CreateTranslation(Position) * Matrix4.Identity;
+        public Matrix4 LocalTransformationMatrix => Matrix4.CreateScale(Scale) * Matrix4.CreateFromQuaternion(Rotation) * Matrix4.CreateTranslation(Position);
 
         public Matrix4 TransformationMatrix => Parent == null ? LocalTransformationMatrix : Parent.TransformationMatrix * LocalTransformationMatrix;
 
         public Transform(Transform parent = null)
         {
             Parent = parent;
+            Position = Vector3.Zero;
+            Rotation = Quaternion.Identity;
+            Scale = Vector3.One;
         }
 
         public Transform(Vector3 position, Quaternion rotation, Vector3 scale)
